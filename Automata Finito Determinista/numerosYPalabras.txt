@@ -1,0 +1,8 @@
+arbol
+fort; while; delete
+asm; Do; new;Using
+Void; If; Then; Else; End
+do; while; end; using
++3333332565; -22.2;+2.1;3.5
+-256451256.265665
++1256.6541684565f654115

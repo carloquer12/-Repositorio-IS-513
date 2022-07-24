@@ -1,0 +1,8 @@
+Cantidad de números válidos: 3
+Cantidad de números inválidos: 3
+Cantidad de palabras válidas: 7
+Cantidad de palabras inválidas: 10
+
+Total de cadenas válidas: 10
+Total de cadenas inválidas: 13
+Total de cadenas: 23
