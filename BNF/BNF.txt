@@ -1,4 +1,8 @@
                            BNF 
+<lenguaje_de_programacion>::- <conjunto_de_instrucciones>
+<conjunto_de_instrucciones>::- <instruccion> | <conjunto_de_instrucciones><instruccion>
+<instruccion>::- <definidor> | <ciclos> | <scanner> | <print> | <cursor> | <operaciones> | <asignacion>
+
 <numero>::- <entero> | <decimal>
 <entero>::- <signo><cifras> | <cifras>
 <cifras>::- <digito> | <cifras> <digito>
@@ -13,3 +17,40 @@
 <mayuscula>::- 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'
 <minuscula>::- 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
 
+<definidor>::- <definir><variable><tipo>
+<definir>::- 'definir'
+<variable>::- <mayuscula> | <variable><contenido>
+<tipo>::- 'entero' | 'decimal' | 'cadena'
+
+<ciclos>::- <ciclos_repeticion> | <ciclos_decision>
+<ciclos_repeticion>::- <ciclo_repetir> | <ciclo_mientras>
+
+<ciclo_repetir>::- 'repetir{' <conjunto_de_instrucciones> '}hasta que '('<condiciones>')'
+<condiciones>::- <condicion_e> |<condicion_d>| <condicion_c> | <condiciones><op_log><condicion_e> | <condiciones><op_log><condicion_d> | <condiciones><op_log><condicion_c>
+<condicion_e>::- <entero><op_rel><entero> | <entero><op_rel><decimal> | <entero><op_rel><variable>
+<condicion_d>::- <decimal><op_rel><decimal> | <decimal><op_rel><entero> | <decimal><op_rel><variable>
+<condicion_c>::- <cadena><op_rel_cadenas><cadena> | <cadena><op_rel_cadenas><variable>
+<condicion_v>::- <variable><op_rel><variable> | <variable><op_rel><entero> | <variable><op_rel><decimal> | <variable><op_rel_cadena><cadena>
+<op_log>::- '||' | '&&' | '!'
+<op_rel>::- '<'| '>' | '==' | '!=' | '<=' | '>=' 
+<op_rel_cadenas>::- '==' | '!=' 
+<ciclo_mientras>::- 'mientras('<condiciones>'){' <conjunto_de_instrucciones> '}repetir'
+
+<ciclos_decision>::- <seleccion_si> | <seleccion_sino>
+
+<seleccion_si>::- 'si('<condiciones>')hacer{' <conjunto_de_instrucciones> '}finsi' 
+<seleccion_sino>::- 'si('<condiciones>')hacer{' <conjunto_de_instrucciones> '}sino{' <conjunto_de_instrucciones> '}finsi'
+
+<scanner>::- 'leer'<variable>
+
+<print>::- 'imprimir'<variable> | 'imprimir'<cadena>
+
+<cursor>::- 'cursor('<entero>','<entero>')'
+
+<operaciones>::- <conjunto_operaciones>
+<conjunto_operaciones>::- <alfanumerico><operador><alfanumerico> | <conjunto_operaciones><operador><alfanumerico>
+<alfanumerico>::- <numero> | <variable>
+<operador>::- +|-|*|/
+
+<asignacion>::- <variable> '<-' <valor>
+<valor>::- <entero> | <decimal> | <cadena> | <operaciones> | <variable>
