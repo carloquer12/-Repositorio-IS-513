@@ -1,29 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream> 
+#include <fstream> 
+using namespace std; 
+ 
 
-
-
-int main(void){
-    
-    //Declaracioness
-    char * tipos_datos[][3]={"entero","decimal","cadena"};
-    char palabras_reservadas[][11]={"definir","hasta que","mientras","repetir","si","hacer","finsi","sino","leer","imprimir","cursor"};
-    int estado=0; //ESTADO INICIAL
-    char * res;
-    char cadena[50];
-    char imprimir[100]=" ";
-    
-    
-    printf("--------------ANALIZADOR LEXICO EN C--------------\n");
-    //Abriendo Archivo Externo
-    FILE *ptfile;
-    char caracter;
-    ptfile=fopen("analizador_lexico.prg","r");
-    if(ptfile==NULL){
-        fputs("error",stderr);
-        exit(1);
-    }
-    while ((caracter=fgetc(ptfile))!=EOF){
-        //printf("%c",caracter);
-        *cadena=caracter;
+int main() { 
+    string lineaActual, primerLinea; 
+    ifstream archivo("JSON.txt"); 
+    int llavesAbiertas = 0; 
+    bool inicioAnalisis = true; 
+ 
+     (getline(archivo, lineaActual));//Esta instruccion es para pasar de una linea del texto, a la siguiente. 
+ 
+    while(lineaActual==""){ //instruccion que ignora las lineas en blanco, itera hasta encontrar la linea con la "{" 
+        getline(archivo, lineaActual); 
+    } 

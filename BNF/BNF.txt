@@ -1,56 +1,36 @@
-                           BNF 
-<lenguaje_de_programacion>::- <conjunto_de_instrucciones>
-<conjunto_de_instrucciones>::- <instruccion> | <conjunto_de_instrucciones><instruccion>
-<instruccion>::- <definidor> | <ciclos> | <scanner> | <print> | <cursor> | <operaciones> | <asignacion>
+----------------------BNF-JSON-------------------------
+json> ::= <value>
 
-<numero>::- <entero> | <decimal>
-<entero>::- <signo><cifras> | <cifras>
-<cifras>::- <digito> | <cifras> <digito>
-<signo>::- +|-
-<digito>::- '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'
-<decimal>::- <signo><cifras> | <cifras>"."<cifras>
+<value> ::= <string>| <number> | <objecto> | <array> | <boolean> | <null> 
 
-<cadena>::- ' " '<contenedor>' " '
-<contenido>::- <caracter> | <contenido><caracter>
-<caracter>::- <letra> | <digito>
-<letra>::- <mayuscula> | <minuscula>
-<mayuscula>::- 'A'|'B'|'C'|'D'|'E'|'F'|'G'|'H'|'I'|'J'|'K'|'L'|'M'|'N'|'O'|'P'|'Q'|'R'|'S'|'T'|'U'|'V'|'W'|'X'|'Y'|'Z'
-<minuscula>::- 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'
+<string> ::= "<cadena>|<string><cadena>"
 
-<definidor>::- <definir><variable><tipo>
-<definir>::- 'definir'
-<variable>::- <mayuscula> | <variable><contenido>
-<tipo>::- 'entero' | 'decimal' | 'cadena'
+<cadena> ::= <letra>|<cadena><letra>
 
-<ciclos>::- <ciclos_repeticion> | <ciclos_decision>
-<ciclos_repeticion>::- <ciclo_repetir> | <ciclo_mientras>
+<letra> ::= |a|A|b|B|c|C|d|D|e|E|f|F|g|G|h|H|i|I|j|J|k|K|l|L|m|M|n|N|o|O|p|P|q|Q|r|R|s|S|t|T|u|U|v|V|w|W|x|X|y|Y|z|   
 
-<ciclo_repetir>::- 'repetir{' <conjunto_de_instrucciones> '}hasta que '('<condiciones>')'
-<condiciones>::- <condicion_e> |<condicion_d>| <condicion_c> | <condiciones><op_log><condicion_e> | <condiciones><op_log><condicion_d> | <condiciones><op_log><condicion_c>
-<condicion_e>::- <entero><op_rel><entero> | <entero><op_rel><decimal> | <entero><op_rel><variable>
-<condicion_d>::- <decimal><op_rel><decimal> | <decimal><op_rel><entero> | <decimal><op_rel><variable>
-<condicion_c>::- <cadena><op_rel_cadenas><cadena> | <cadena><op_rel_cadenas><variable>
-<condicion_v>::- <variable><op_rel><variable> | <variable><op_rel><entero> | <variable><op_rel><decimal> | <variable><op_rel_cadena><cadena>
-<op_log>::- '||' | '&&' | '!'
-<op_rel>::- '<'| '>' | '==' | '!=' | '<=' | '>=' 
-<op_rel_cadenas>::- '==' | '!=' 
-<ciclo_mientras>::- 'mientras('<condiciones>'){' <conjunto_de_instrucciones> '}repetir'
+<number> ::= <[int] [<float>] {<exponente>}>
 
-<ciclos_decision>::- <seleccion_si> | <seleccion_sino>
+<int> ::= <entero con digito>|<int><digito><digito>
 
-<seleccion_si>::- 'si('<condiciones>')hacer{' <conjunto_de_instrucciones> '}finsi' 
-<seleccion_sino>::- 'si('<condiciones>')hacer{' <conjunto_de_instrucciones> '}sino{' <conjunto_de_instrucciones> '}finsi'
+<float> ::= <digito>|<digito> "." <digito>
 
-<scanner>::- 'leer'<variable>
+<exponente> ::= <indicador de exponente><entero con signo><digito>
 
-<print>::- 'imprimir'<variable> | 'imprimir'<cadena>
+<indicador del exponente> ::= e|E
 
-<cursor>::- 'cursor('<entero>','<entero>')'
+<entero con digno> ::= <signo><digto>
 
-<operaciones>::- <conjunto_operaciones>
-<conjunto_operaciones>::- <alfanumerico><operador><alfanumerico> | <conjunto_operaciones><operador><alfanumerico>
-<alfanumerico>::- <numero> | <variable>
-<operador>::- +|-|*|/
+<signo> ::= +|-
 
-<asignacion>::- <variable> '<-' <valor>
-<valor>::- <entero> | <decimal> | <cadena> | <operaciones> | <variable>
+<digito> ::= 0|1|2|3|4|5|6|7|8|9
+
+<boolean> ::= true|false
+
+<null> ::=  null
+
+<objeto> ::=  “ { “ [ <pertenecia> ]  {“ , ” <pertenecia>}  “ } “
+
+<pertenecia> ::= <string>  “:” <value>
+
+<array> ::= <"["[<value>] {","<value>}"]"
