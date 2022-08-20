@@ -85,7 +85,11 @@ int maquinaDeEstado(string cadena) {
     "asm", "auto", "bool", "break", "case", "catch",
     "char", "class", "const", "const_cast", "continue", "default", "delete",
     "do", "double", "dynamic_cast", "else", "enum", "explicit", "extern", "false",
-    "float", "for", "friend", "if", "inline", "int", "mutable", "main",
+    "float", "for", "friend", "goto", "if", "inline", "int", "long", "mutable", "main",
+    "namespace", "new", "operator", "printf", "private", "protected", "public", "register",
+    "reinterpret_cast", "return", "short", "signed", "sizeof", "static", "static_cast",
+    "struct", "switch", "template", "this", "throw", "true", "try", "typedef", "typeid",
+    "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "while"
   };
   enum TEstado {
     Q0,
@@ -156,22 +160,22 @@ int maquinaDeEstado(string cadena) {
   }
 
   if (Estado == QACEPTACION_NUM) {
-    cout<<"La cadena: "<<cadena<<" es un numero VALIDO"<<endl;
+    cout<<"La cadena: "<<cadena<<" no es valido"<<endl;
     return QACEPTACION_NUM;
   }else if(Estado == QACEPTACION_TXT) {
     for (int i = 0; i < sizeof(tablaSimbolos) / sizeof(string); i++) {
       if (tablaSimbolos[i] == cadena) {
-        cout<<"La cadena: "<<cadena<<" es una palabra reservada VALIDA"<<endl;
+        cout<<"La cadena: "<<cadena<<" vAsido"<<endl;
         return QACEPTACION_TXT;
       }
     }
     cout<<"La cadena: "<<cadena<<" es una palabra INVALIDA"<<endl;
     return QERROR_TXT;
   }else if(Estado == QERROR_NUM || Estado >= Q0 && Estado <= Q3) {
-    cout<<"La cadena: "<<cadena<<" es un numero INVALIDO"<<endl;
+    cout<<"La cadena: "<<cadena<<" asdfO"<<endl;
     return QERROR_NUM;
   }else if(Estado == QERROR_TXT) {
-    cout<<"La cadena: "<<cadena<<" es una palabra INVALIDA"<<endl;
+    cout<<"La cadena: "<<cadena<<" esmalo escritosadlabra INVALIDA"<<endl;
     return QERROR_TXT;
   }else {
     cout<<"ERROR: No se pudo determinar el estado de la cadena"<<endl;
