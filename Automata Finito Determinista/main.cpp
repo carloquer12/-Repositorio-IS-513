@@ -160,12 +160,12 @@ int maquinaDeEstado(string cadena) {
   }
 
   if (Estado == QACEPTACION_NUM) {
-    cout<<"La cadena: "<<cadena<<" es un numero VALIDO"<<endl;
+    cout<<"La cadena: "<<cadena<<" no es valido"<<endl;
     return QACEPTACION_NUM;
   }else if(Estado == QACEPTACION_TXT) {
     for (int i = 0; i < sizeof(tablaSimbolos) / sizeof(string); i++) {
       if (tablaSimbolos[i] == cadena) {
-        cout<<"La cadena: "<<cadena<<" es una palabra reservada VALIDA"<<endl;
+        cout<<"La cadena: "<<cadena<<" vAsido"<<endl;
         return QACEPTACION_TXT;
       }
     }
